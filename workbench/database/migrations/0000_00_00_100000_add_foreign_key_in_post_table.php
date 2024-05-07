@@ -9,7 +9,7 @@ class AddForeignKeyInPostTable extends Migration
     public function up(): void
     {
         Schema::table('post', function (Blueprint $table) {
-            $table->foreign(['category_id'])->references(['id'])->on('category');
+            $table->foreign(['category_id'])->references(['id'])->on('anything');
         });
     }
 

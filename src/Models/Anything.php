@@ -7,9 +7,22 @@ namespace Dex\Laravel\Anything\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property string $label
+ * @property string $slug
+ */
 class Anything extends Model
 {
     use HasFactory;
 
     protected $table = 'anything';
+
+    protected static function boot(): void
+    {
+        parent::boot();
+
+        static::saving(function (Anything $anything) {
+            $anything->slug = str($anything->label)->slug()->value();
+        });
+    }
 }

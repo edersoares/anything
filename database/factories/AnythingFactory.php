@@ -17,7 +17,8 @@ class AnythingFactory extends Factory
     public function definition(): array
     {
         return [
-
+            'label' => $this->faker->colorName(),
+            'group' => 'colors',
         ];
     }
 }
