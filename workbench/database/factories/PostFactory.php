@@ -2,7 +2,7 @@
 
 namespace Workbench\Dex\Laravel\Anything\Database\Factories;
 
-use Dex\Laravel\Anything\Models\Anything;
+use Dex\Laravel\Anything\Database\Factories\AnythingFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Workbench\Dex\Laravel\Anything\App\Models\Post;
 
@@ -16,7 +16,7 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
-            'category_id' => fn () => Anything::factory()->create(),
+            'category_id' => fn () => AnythingFactory::new()->create(),
             'title' => $this->faker->paragraph(),
         ];
     }
