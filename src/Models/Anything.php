@@ -23,4 +23,17 @@ class Anything extends Model
     protected $table = 'anything';
 
     protected $fillable = ['label', 'type'];
+
+    public static function get(string $slug, ?string $type = null): static
+    {
+        $type ??= (new static())->type();
+
+        /** @var static $model */
+        $model = static::query()
+            ->where('type', $type)
+            ->where('slug', $slug)
+            ->first();
+
+        return $model;
+    }
 }
