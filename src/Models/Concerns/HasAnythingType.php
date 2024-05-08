@@ -19,7 +19,9 @@ trait HasAnythingType
         });
 
         static::addGlobalScope(function (Builder $builder) {
-            $builder->where('type', $builder->getModel()->type());
+            /** @var Anything $model */
+            $model = $builder->getModel();
+            $builder->where('type', $model->type());
         });
     }
 

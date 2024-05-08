@@ -28,6 +28,7 @@ trait HasSlug
 
     protected function getSlugValue(): string
     {
+        /** @var string $slugable */
         $slugable = $this->getAttribute(
             $this->getSlugableColumn(),
         );
