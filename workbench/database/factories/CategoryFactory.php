@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Workbench\Dex\Laravel\Anything\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;

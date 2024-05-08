@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Dex\Laravel\Anything\Models\Concerns;
 
 use Dex\Laravel\Anything\Models\Anything;

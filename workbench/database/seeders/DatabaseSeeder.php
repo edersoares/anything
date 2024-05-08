@@ -36,6 +36,5 @@ class DatabaseSeeder extends Seeder
             ['race_id' => $white->getKey()],
             ['race_id' => $black->getKey()],
         ))->count(9)->create();
-
     }
 }
