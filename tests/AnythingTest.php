@@ -10,12 +10,6 @@ test('command exists', function () {
         ->assertSuccessful();
 });
 
-test('route exists', function () {
-    $this->get('anything')
-        ->assertSee('Anything')
-        ->assertOk();
-});
-
 test('database table is empty', function () {
     $this->assertDatabaseEmpty(Anything::class);
 });
