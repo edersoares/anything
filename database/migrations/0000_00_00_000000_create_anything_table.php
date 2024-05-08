@@ -12,9 +12,10 @@ class CreateAnythingTable extends Migration
     {
         Schema::create('anything', function (Blueprint $table) {
             $table->id();
-            $table->string('label')->index();
+            $table->string('type')->index();
             $table->string('slug')->index();
-            $table->string('group')->index();
+            $table->string('label')->index();
+            $table->unique(['type', 'slug']);
             $table->timestamps();
         });
     }

@@ -4,26 +4,23 @@ declare(strict_types=1);
 
 namespace Dex\Laravel\Anything\Models;
 
+use Dex\Laravel\Anything\Models\Concerns\HasAnythingType;
+use Dex\Laravel\Anything\Models\Concerns\HasSlug;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property string $label
+ * @property string $type
  * @property string $slug
- * @property string $group
  */
 class Anything extends Model
 {
+    use HasAnythingType;
     use HasFactory;
+    use HasSlug;
 
     protected $table = 'anything';
 
-    protected static function boot(): void
-    {
-        parent::boot();
-
-        static::saving(function (Anything $anything) {
-            $anything->slug = str($anything->label)->slug()->value();
-        });
-    }
+    protected $fillable = ['label', 'type'];
 }

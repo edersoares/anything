@@ -8,6 +8,8 @@ use Dex\Laravel\Anything\Models\Anything;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
+ * @template TModel of Anything
+ *
  * @extends Factory<Anything>
  */
 class AnythingFactory extends Factory
@@ -17,8 +19,7 @@ class AnythingFactory extends Factory
     public function definition(): array
     {
         return [
-            'label' => $this->faker->colorName(),
-            'group' => 'colors',
+            'label' => $this->faker->word(),
         ];
     }
 }
