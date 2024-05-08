@@ -4,18 +4,21 @@ declare(strict_types=1);
 
 namespace Dex\Laravel\Anything\Models;
 
+use Dex\Laravel\Anything\Models\Concerns\AnythingMorphed;
 use Dex\Laravel\Anything\Models\Concerns\HasAnythingType;
 use Dex\Laravel\Anything\Models\Concerns\HasSlug;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @property string $label
+ * @property int $id
  * @property string $type
  * @property string $slug
+ * @property string $label
  */
 class Anything extends Model
 {
+    use AnythingMorphed;
     use HasAnythingType;
     use HasFactory;
     use HasSlug;
