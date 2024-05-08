@@ -14,6 +14,10 @@ trait HasSlug
     public static function bootHasSlug(): void
     {
         static::saving(function (Anything $anything) {
+            if ($anything->slug) {
+                return;
+            }
+
             $anything->setAttribute(
                 key: $anything->getSlugColumn(),
                 value: $anything->getSlugValue(),

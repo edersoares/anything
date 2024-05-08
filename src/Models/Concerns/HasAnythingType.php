@@ -15,7 +15,9 @@ trait HasAnythingType
     public static function bootHasAnythingType(): void
     {
         static::saving(function (Anything $model) {
-            $model->setAttribute('type', $model->getAnythingType());
+            if (empty($model->getAttribute('type'))) {
+                $model->setAttribute('type', $model->getAnythingType());
+            }
         });
 
         static::addGlobalScope(function (Builder $builder) {

@@ -25,7 +25,7 @@ class Anything extends Model
 
     protected $table = 'anything';
 
-    protected $fillable = ['label', 'type'];
+    protected $fillable = ['type', 'slug', 'label'];
 
     public static function get(string $slug, ?string $type = null): static
     {
