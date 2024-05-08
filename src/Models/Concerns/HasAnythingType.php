@@ -23,7 +23,15 @@ trait HasAnythingType
         static::addGlobalScope(function (Builder $builder) {
             /** @var Anything $model */
             $model = $builder->getModel();
-            $builder->where('type', $model->getAnythingType());
+
+            $type = $model->getAnythingType();
+
+            // Allow that Anything model can query any type
+            if ($type === 'anything') {
+                return;
+            }
+
+            $builder->where('type', $type);
         });
     }
 
