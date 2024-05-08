@@ -29,7 +29,7 @@ class Anything extends Model
 
     public static function get(string $slug, ?string $type = null): static
     {
-        $type ??= (new static())->type(); // @phpstan-ignore-line
+        $type ??= (new static())->getAnythingType(); // @phpstan-ignore-line
 
         /** @var static $model */
         $model = static::query()

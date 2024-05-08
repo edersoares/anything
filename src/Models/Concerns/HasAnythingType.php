@@ -15,17 +15,17 @@ trait HasAnythingType
     public static function bootHasAnythingType(): void
     {
         static::saving(function (Anything $model) {
-            $model->setAttribute('type', $model->type());
+            $model->setAttribute('type', $model->getAnythingType());
         });
 
         static::addGlobalScope(function (Builder $builder) {
             /** @var Anything $model */
             $model = $builder->getModel();
-            $builder->where('type', $model->type());
+            $builder->where('type', $model->getAnythingType());
         });
     }
 
-    public function type(): string
+    public function getAnythingType(): string
     {
         return str(class_basename($this))->slug()->value();
     }
