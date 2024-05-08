@@ -46,6 +46,9 @@ class Person extends Model
         return $this->belongsTo(Race::class);
     }
 
+    /**
+     * @return MorphToMany<Deficiency>
+     */
     public function deficiencies(): MorphToMany
     {
         return $this->morphToManyAnything(Deficiency::class);

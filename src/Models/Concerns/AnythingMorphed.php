@@ -12,6 +12,9 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
  */
 trait AnythingMorphed
 {
+    /**
+     * @return MorphToMany<static>
+     */
     public function morphedByManyAnything(string $related): MorphToMany
     {
         return $this->morphedByMany(
