@@ -6,7 +6,9 @@ namespace Workbench\Dex\Laravel\Anything\Database\Seeders;
 
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
+use Workbench\Dex\Laravel\Anything\App\Models\Deficiency;
 use Workbench\Dex\Laravel\Anything\App\Models\Gender;
+use Workbench\Dex\Laravel\Anything\App\Models\Person;
 use Workbench\Dex\Laravel\Anything\App\Models\Race;
 use Workbench\Dex\Laravel\Anything\Database\Factories\PersonFactory;
 
@@ -18,6 +20,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
+            DeficiencySeeder::class,
             GenderSeeder::class,
             RaceSeeder::class,
         ]);
@@ -27,7 +30,7 @@ class DatabaseSeeder extends Seeder
         $white = Race::get('white');
         $black = Race::get('black');
 
-        PersonFactory::new()->state(new Sequence(
+        $persons = PersonFactory::new()->state(new Sequence(
             ['gender_id' => $female->getKey()],
             ['gender_id' => $male->getKey()],
         ))->state(new Sequence(
@@ -36,5 +39,10 @@ class DatabaseSeeder extends Seeder
             ['race_id' => $white->getKey()],
             ['race_id' => $black->getKey()],
         ))->count(9)->create();
+
+        /** @var Person $person */
+        foreach ($persons as $person) {
+            $person->deficiencies()->attach(Deficiency::query()->inRandomOrder()->first());
+        }
     }
 }

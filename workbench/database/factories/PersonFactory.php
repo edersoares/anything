@@ -18,6 +18,7 @@ class PersonFactory extends Factory
     {
         return [
             'gender_id' => fn () => GenderFactory::new()->create(),
+            'race_id' => fn () => RaceFactory::new()->create(),
             'name' => $this->faker->name(),
         ];
     }
