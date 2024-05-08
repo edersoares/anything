@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 use Dex\Laravel\Anything\Models\Anything;
 
+use Workbench\Dex\Laravel\Anything\App\Models\Gender;
+use Workbench\Dex\Laravel\Anything\App\Models\Race;
+use Workbench\Dex\Laravel\Anything\Database\Seeders\GenderSeeder;
+use Workbench\Dex\Laravel\Anything\Database\Seeders\RaceSeeder;
 use function Pest\Laravel\assertDatabaseCount;
 
 use Workbench\Dex\Laravel\Anything\App\Models\Category;
@@ -41,4 +45,14 @@ test('anything using belongs relation', function () {
         ->count();
 
     expect($count)->toBe(0);
+});
+
+test('ensure anything extended models do query correcly', function () {
+    $this->seed(GenderSeeder::class);
+    $this->seed(RaceSeeder::class);
+
+    $this->assertDatabaseCount(Anything::class, 9);
+
+    expect(Gender::query()->count())->toBe(3)
+        ->and(Race::query()->count())->toBe(6);
 });
