@@ -79,5 +79,9 @@ test('ensure anything extended models do query correcly', function () {
     expect($countMalePerson)->toBe(4)
         ->and($countFemalePerson)->toBe(5)
         ->and($countWhitePerson)->toBe(4)
-        ->and($countBlackPerson)->toBe(5);
+        ->and($countBlackPerson)->toBe(5)
+        ->and($male->persons()->count())->toBe(4)
+        ->and($female->persons()->count())->toBe(5)
+        ->and($white->persons()->count())->toBe(4)
+        ->and($black->persons()->count())->toBe(5);
 });
