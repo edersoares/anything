@@ -30,6 +30,8 @@ Please review [our security policy](../../security/policy) on how to report secu
 ## Credits
 
 - [Eder Soares](https://github.com/edersoares)
+- [Edinei Valdameri](https://github.com/edineivaldameri)
+- [Robert Ferraz de Sousa](https://github.com/robertfsousa)
 - [All Contributors](../../contributors)
 
 ## License
