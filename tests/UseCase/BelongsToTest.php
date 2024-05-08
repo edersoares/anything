@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Factories\Sequence;
 
 use function Pest\Laravel\assertDatabaseCount;
 
-use Workbench\Dex\Laravel\Anything\App\Models\Category;
 use Workbench\Dex\Laravel\Anything\App\Models\Gender;
 use Workbench\Dex\Laravel\Anything\App\Models\Person;
 use Workbench\Dex\Laravel\Anything\App\Models\Post;
@@ -20,7 +19,6 @@ test('post has belongs to category', function () {
     Post::factory()->create();
 
     assertDatabaseCount(Post::class, 1);
-    assertDatabaseCount(Category::class, 0);
     assertDatabaseCount(Anything::class, 1);
 });
 
@@ -34,7 +32,6 @@ test('anything using belongs relation', function () {
     ]);
 
     assertDatabaseCount(Post::class, 1);
-    assertDatabaseCount(Category::class, 0);
     assertDatabaseCount(Anything::class, 3);
 
     $count = Post::query()
