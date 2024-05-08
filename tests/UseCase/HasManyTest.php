@@ -44,10 +44,15 @@ test('ensure anything has many relation do query correcly', function () {
     /** @var Person $mutePerson */
     $mutePerson = PersonFactory::new()->create();
 
+    /** @var Person $blindAndMutePerson */
+    $blindAndMutePerson = PersonFactory::new()->create();
+
     $blindPerson->deficiencies()->attach($blind->getKey());
     $deafAndMutePerson->deficiencies()->attach($deaf->getKey());
     $deafAndMutePerson->deficiencies()->attach($mute->getKey());
     $mutePerson->deficiencies()->attach($mute->getKey());
+    $blindAndMutePerson->deficiencies()->attach($blind->getKey());
+    $blindAndMutePerson->deficiencies()->attach($mute->getKey());
 
     $countBlindPerson = Person::query()
         ->whereHas('deficiencies', fn ($query) => $query->where('slug', 'blind'))
@@ -61,7 +66,10 @@ test('ensure anything has many relation do query correcly', function () {
         ->whereHas('deficiencies', fn ($query) => $query->where('slug', 'mute'))
         ->count();
 
-    expect($countBlindPerson)->toBe(1)
+    expect($countBlindPerson)->toBe(2)
         ->and($countDeafPerson)->toBe(1)
-        ->and($countMutePerson)->toBe(2);
+        ->and($countMutePerson)->toBe(3)
+        ->and($blind->persons()->count())->toBe(2)
+        ->and($deaf->persons()->count())->toBe(1)
+        ->and($mute->persons()->count())->toBe(3);
 });

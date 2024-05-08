@@ -18,8 +18,8 @@ trait AnythingMorphed
             related: $related,
             name: 'anythingable',
             table: 'anythingable',
-            foreignPivotKey: 'anythingable_id',
-            relatedPivotKey: 'anything_id',
+            foreignPivotKey: 'anything_id',
+            relatedPivotKey: 'anythingable_id',
         );
     }
 }
