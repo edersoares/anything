@@ -13,6 +13,16 @@
             "name": "Eder Soares",
             "email": "edersoares@me.com",
             "role": "Developer"
+        },
+        {
+            "name": "Edinei Valdameri",
+            "email": "edineivaldameri@gmail.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Robert Ferraz de Sousa",
+            "email": "robertfsousa@gmail.com",
+            "role": "Developer"
         }
     ],
     "require": {
