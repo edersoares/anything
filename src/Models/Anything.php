@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property string $label
  * @property string $slug
+ * @property string $group
  */
 class Anything extends Model
 {
