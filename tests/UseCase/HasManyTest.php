@@ -27,3 +27,41 @@ test('anything using has many relation', function () {
 
     expect($person->deficiencies()->count())->toBe(3);
 });
+
+test('ensure anything has many relation do query correcly', function () {
+    $this->seed(DeficiencySeeder::class);
+
+    $blind = Deficiency::get('blind');
+    $deaf = Deficiency::get('deaf');
+    $mute = Deficiency::get('mute');
+
+    /** @var Person $blindPerson */
+    $blindPerson = PersonFactory::new()->create();
+
+    /** @var Person $deafAndMutePerson */
+    $deafAndMutePerson = PersonFactory::new()->create();
+
+    /** @var Person $mutePerson */
+    $mutePerson = PersonFactory::new()->create();
+
+    $blindPerson->deficiencies()->attach($blind->getKey());
+    $deafAndMutePerson->deficiencies()->attach($deaf->getKey());
+    $deafAndMutePerson->deficiencies()->attach($mute->getKey());
+    $mutePerson->deficiencies()->attach($mute->getKey());
+
+    $countBlindPerson = Person::query()
+        ->whereHas('deficiencies', fn ($query) => $query->where('slug', 'blind'))
+        ->count();
+
+    $countDeafPerson = Person::query()
+        ->whereHas('deficiencies', fn ($query) => $query->where('slug', 'deaf'))
+        ->count();
+
+    $countMutePerson = Person::query()
+        ->whereHas('deficiencies', fn ($query) => $query->where('slug', 'mute'))
+        ->count();
+
+    expect($countBlindPerson)->toBe(1)
+        ->and($countDeafPerson)->toBe(1)
+        ->and($countMutePerson)->toBe(2);
+});
