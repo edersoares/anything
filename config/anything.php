@@ -3,5 +3,7 @@
 declare(strict_types=1);
 
 return [
-    // dex/anything
+    'search' => [
+        'operator' => env('ANYTHING_SEARCH_OPERATOR', 'ilike'),
+    ],
 ];

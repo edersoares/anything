@@ -15,10 +15,11 @@ class AnythingController
      */
     public function __invoke(Request $request): Collection
     {
-        return Anything::query()
-            ->when($search = $request->query('search'), function ($query) use ($search) {
-                $query->where('slug', 'like', "%{$search}%");
-            })
+        /** @var Collection<int, Anything> $result */
+        $result = Anything::query()
+            ->whereSearch((string) $request->string('search'))
             ->get();
+
+        return $result;
     }
 }
