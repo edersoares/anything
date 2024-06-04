@@ -9,6 +9,7 @@ use Dex\Laravel\Anything\Models\Concerns\HasAnythingType;
 use Dex\Laravel\Anything\Models\Concerns\HasSlug;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property int $id
@@ -22,6 +23,7 @@ class Anything extends Model
     use HasAnythingType;
     use HasFactory;
     use HasSlug;
+    use SoftDeletes;
 
     protected $table = 'anything';
 
