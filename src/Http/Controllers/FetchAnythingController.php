@@ -9,6 +9,9 @@ use Illuminate\Database\Eloquent\Collection;
 
 class FetchAnythingController
 {
+    /**
+     * @return Collection<int, Anything>
+     */
     public function __invoke(string $type): Collection
     {
         /** @var Collection<int, Anything> $anything */
