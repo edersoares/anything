@@ -17,6 +17,7 @@ class CreateAnythingTable extends Migration
             $table->string('label')->index();
             $table->unique(['type', 'slug']);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
