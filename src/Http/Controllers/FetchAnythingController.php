@@ -16,7 +16,7 @@ class FetchAnythingController
     {
         /** @var Collection<int, Anything> $anything */
         $anything = Anything::query()
-            ->where('type', $type)
+            ->whereType($type)
             ->get();
 
         return $anything;

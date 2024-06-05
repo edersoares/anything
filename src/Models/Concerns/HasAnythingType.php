@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Dex\Laravel\Anything\Models\Concerns;
 
 use Dex\Laravel\Anything\Models\Anything;
-use Illuminate\Database\Eloquent\Builder;
+use Dex\Laravel\Anything\Models\Builders\AnythingBuilder;
 
 /**
  * @mixin Anything
@@ -20,7 +20,7 @@ trait HasAnythingType
             }
         });
 
-        static::addGlobalScope(function (Builder $builder) {
+        static::addGlobalScope(function (AnythingBuilder $builder) {
             /** @var Anything $model */
             $model = $builder->getModel();
 
@@ -31,7 +31,7 @@ trait HasAnythingType
                 return;
             }
 
-            $builder->where('type', $type);
+            $builder->whereType($type);
         });
     }
 

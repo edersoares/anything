@@ -6,6 +6,9 @@
     </testsuite>
   </testsuites>
   <coverage/>
+  <php>
+    <server name="ANYTHING_SEARCH_OPERATOR" value="LIKE"/>
+  </php>
   <source>
     <include>
       <directory suffix=".php">src</directory>
